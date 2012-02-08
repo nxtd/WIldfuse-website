@@ -81,7 +81,9 @@ window.log = function(){
             this.defaultOptions = {
             	property: 'all', 
             	duration: '1s', 
-            	timingFunction: 'ease-in-out'
+            	timingFunction: 'ease-in-out',
+            	delay: '',
+            	fillMode: ''
             };
 
             var settings = $.extend({}, this.defaultOptions, options);
@@ -90,11 +92,11 @@ window.log = function(){
                 var $this = $(this);
                 
                 $this.css({
-                	'-webkit-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction,
-					'-moz-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction,
-					'-o-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction,
-					'-ms-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction,
-					'transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction
+                	'-webkit-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction + ' ' + settings.delay + ' ' + settings.fillMode,
+					'-moz-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction + ' ' + settings.delay + ' ' + settings.fillMode,
+					'-o-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction + ' ' + settings.delay + ' ' + settings.fillMode,
+					'-ms-transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction + ' ' + settings.delay + ' ' + settings.fillMode,
+					'transition': settings.property + ' ' + settings.duration + ' ' + settings.timingFunction + ' ' + settings.delay + ' ' + settings.fillMode
                 });
             });
         }

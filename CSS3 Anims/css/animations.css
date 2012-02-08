@@ -1,5 +1,5 @@
 html{overflow-x: scroll;}
-body{text-align: center}
+body{text-align: center; min-height: 1024px}
 
 /*/////////////////////////////////////////////
 -
@@ -8,11 +8,12 @@ body{text-align: center}
 */
 
 .slide{
-margin: auto;
+margin: 0 auto;
 height: 400px;
 width: 900px;
 position: relative;
 text-align: left;
+/*background: #00c0f3;*/
 }
 
 /*----------
@@ -25,9 +26,6 @@ text-align: left;
 }
 
 .slide:nth-child(1) .text{
-position: absolute;
-top: 0; 
-left: 0;
 width: 358px;
 text-align: left;
 /*background: #ededed;*/
@@ -70,18 +68,16 @@ text-align: left;
 .slide:nth-child(2){display: none}
 
 .slide:nth-child(2) .text{
-/*background: #ededed;*/ 
+/*background: #ededed;*/
 text-align: center;
 margin-left: auto; 
 margin-bottom: 50px; 
-margin-top: -20px;
-position: absolute;
-opacity: 0.0
+opacity: 0.0;
 }
 
 .slide:nth-child(2) .illustration{
 position: relative;
-top: 190px;
+top: -40px;
 margin-left: -26px;
 }
 
@@ -115,7 +111,6 @@ margin-left: -26px;
 	margin-bottom: 26px;
 	position: relative;
 	font-size: .8em;
-	display: none;
 	
 	-webkit-perspective: 400px;
 	-moz-perspective: 400px;
@@ -137,6 +132,8 @@ margin-left: -26px;
 	font-family: 'Futura Md BT';
 	text-shadow: 0 -1px 1px #02a5d1, 0 1px 1px #5bd9fa;
 	line-height: 97px;
+	opacity: 0.0; 
+	-webkit-opacity: 0.0; 
 	
 	-webkit-transform: rotateY(0deg);
 	-webkit-transform-style: preserve-3d;
@@ -171,6 +168,9 @@ margin-left: -26px;
 	background: #fff;
 	width: inherit;
 	height: inherit;
+	opacity: 0.0; 
+	-webkit-opacity: 0.0; 
+
 	
 	-webkit-transform: rotateY(-180deg);
 	-webkit-transform-style: preserve-3d;
@@ -213,6 +213,23 @@ margin-left: -26px;
 	-moz-transform: rotateX(0deg);
 }
 
+/******************************************
+*
+* GENERIC ANIMATIONS
+*
+*/
+@-webkit-keyframes fade-in{
+	from{
+		-webkit-opacity: 0.0; 	
+		opacity: 0.0; 
+	}
+	to{
+		-webkit-opacity: 1.0; 		
+		opacity: 1.0; 	
+	}
+}
+
+
 
 /******************************************
 *
@@ -223,7 +240,7 @@ margin-left: -26px;
 /* -- Texts -- */
 @-webkit-keyframes slide1-out-text{
 	from{}
-	to{-webkit-transform: translate(1000px, 0); opacity: 0.0}
+	to{-webkit-transform: translate(2000px, 0); opacity: 0.0}
 }
 
 /* -- Phone on the left -- */
@@ -264,6 +281,30 @@ margin-left: -26px;
 
 /* -- Texts -- */
 @-webkit-keyframes slide2-in-text{
-	from{opacity: 0.0}
-	to{-webkit-transform: translate(0, 100px); opacity: 1.0}
+	from{-webkit-transform: translate(0, -140px); opacity: 0.0; -webkit-opacity: 0.0; }
+	to{-webkit-transform: translate(0, -40px); opacity: 1.0; -webkit-opacity: 1.0;}
+}
+
+/* -- Flip -- */
+@-webkit-keyframes flip-horizontal-front{
+	0%{
+		-webkit-transform: rotateY(0deg);
+		opacity: 1.0;
+	}
+	100%{		
+		-webkit-transform: rotateY(-180deg);
+		opacity: 1.0;		
+	}
+}
+@-webkit-keyframes flip-horizontal-back{
+	0%{
+		z-index: 800;
+		-webkit-transform: rotateY(180deg);		
+		opacity: 1.0;		
+	}
+	100%{
+		z-index: 1000;
+		-webkit-transform: rotateY(0deg);
+		opacity: 1.0;
+	}
 }

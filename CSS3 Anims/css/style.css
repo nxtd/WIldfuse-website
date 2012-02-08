@@ -212,7 +212,7 @@ td { vertical-align: top; }
    ========================================================================== */
 
 #container{margin: auto; width: 900px;padding-bottom: 50px}
-header{background: url('../img/header.png') no-repeat; height: 89px; margin-top: 50px}
+header{background: url('../img/header.png') no-repeat; height: 89px; margin: 50px 0 10px 0; }
 
 h3{
 font-size: 3.95em;
@@ -220,7 +220,8 @@ font-family: 'Futura Md BT';
 line-height: 1.0em;
 letter-spacing: -0.07em;
 color: #ffd200;
-margin: 1em auto 0.2em -3px;
+margin: 0em auto 0.2em -3px;
+padding-top: 1em;
 text-transform: uppercase;
 }
 p.lead-text{
