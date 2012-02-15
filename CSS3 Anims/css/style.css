@@ -208,11 +208,11 @@ td { vertical-align: top; }
 
 
 /* ==|== primary styles =====================================================
-   Author: 
+   Author: Nicolas Dancie
    ========================================================================== */
 html{overflow-x: scroll;}
-body{text-align: center; min-height: 1024px}
-#container{margin: auto; width: 900px;}
+body{}
+#container{text-align: center; }
 
 h3{
 font-size: 3.95em;
@@ -221,20 +221,28 @@ line-height: 1.0em;
 letter-spacing: -0.07em;
 color: #ffd200;
 text-transform: uppercase;
+margin: 0 0 20px 0; 
 }
 p.lead-text{
 text-transform: uppercase;
 font-size: 1.2em;
 color: #999;
 line-height: 1.4em;
+margin-bottom: 40px;
 }
 
-#home-header{}
 
+header{background: url('../img/header.png') no-repeat; height: 90px; margin: 30px auto auto auto; width: 900px; }
+.carousel{height: 440px; overflow: hidden; margin-left: -50%; width: 200%;}
 #main{
-	position: absolute;
-	top: 500px;
+	/*position: absolute;
+	top: 600px;*/
+	z-index: 5000;			
 }
+#main>section{text-align: center;}
+#main>section>.inner{margin: auto; width: 900px; text-align: left;}
+#ternary-set{background: url(../img/grey-grey-diagonal-stripes.png)}
+#ternary-set img{margin-left: -43px}
 
 
 /*/////////////////////////////////////////////
@@ -244,15 +252,18 @@ line-height: 1.4em;
 */
 
 .slide{
+float: none;
+clear: both;
+position:inherit;
 margin: 0 auto;
-height: 400px;
+height: 440px;
 width: 900px;
-position: relative;
 text-align: left;
-background: #00c0f3;
+/*background: #00c0f3;*/
+box-sizing: border-box;
 }
-.slide header{background: url('../img/header.png') no-repeat; height: 89px;}
-.slide .content{margin-top: 30px}
+.slide .content{margin-top: 0px; }
+.slide .content .text{padding-top: 20px}
 
 /*----------
 -
@@ -263,14 +274,20 @@ background: #00c0f3;
 #slide1 .text{
 width: 358px;
 text-align: left;
+float: left;
+padding-top: 80px;
 /*background: #ededed;*/
 }
 
 #slide1 .illustration{
 width: 690px;
-position: absolute;
+position: relative;
+float: right;
+margin-right: -160px;
+/*position: absolute;
 top: 0; 
-left: 358px;
+left: 358px;*/
+background: red;
 }
 
 #slide1 .rotates:nth-child(1){
@@ -300,20 +317,17 @@ text-align: left;
 + SLIDE 2
 -
 */
-.slide:nth-child(2){display: none}
+#slide2{display: none; }
 
-.carousel .slide:nth-child(2) .text{
+#slide2 .text{
 /*background: #ededed;*/
 text-align: center;
-margin-top: -50px;
 margin-left: auto; 
-margin-bottom: 80px; 
 opacity: 0.0;
 }
 
-.slide:nth-child(2) .illustration{
+#slide2 .illustration{
 position: relative;
-top: -40px;
 margin-left: -26px;
 }
 
@@ -428,9 +442,16 @@ margin-left: -26px;
 	-moz-transform: rotateX(0deg);
 }
 
+/*----------
+-
++ SLIDE 3
+-
+*/
+#slide3{ padding-top: 0px; }
 
-#ternary-set{text-align: center; background: url(../img/grey-grey-diagonal-stripes.png)}
-#ternary-set img{margin-left: -43px}
+
+
+
 
 
 

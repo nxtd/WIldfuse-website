@@ -171,3 +171,14 @@
 		-webkit-transform: translate(100px, 50px);
 	}
 }
+
+/******************************************
+*
+* SLIDE 2 ANIMATIONS
+*
+*/
+
+@-webkit-keyframes rotate-CCW-0--180{
+	0%{-webkit-transform: rotate(0deg)}
+	100%{-webkit-transform: rotate(-180deg)}
+}

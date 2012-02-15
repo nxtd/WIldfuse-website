@@ -9,47 +9,53 @@ $(document).ready(function(){
 		animations:[
 			/* SLIDE 1 */
 			{// Phone on the left
-				element: $('.carousel .slide:nth-child(1) .rotates:nth-child(1)')[0],
+				element: $('#slide1 .rotates:nth-child(1)')[0],
 				animations: [
 					{name: 'slide1-out-phone-left-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
 					{name: 'slide1-out-phone-left-p2', duration: '500ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
 				]
 			},
 			{// Phone in the middle
-				element: $('.carousel .slide:nth-child(1) .slides:nth-child(2)')[0],
+				element: $('#slide1 .slides:nth-child(2)')[0],
 				animations:[
 					{name: 'slide1-out-phone-middle-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
 					{name: 'slide1-out-phone-middle-p2', duration: '190ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
 				]
 			},
 			{// Phone on the right
-				element: $('.carousel .slide:nth-child(1) .rotates:nth-child(3)')[0],
+				element: $('#slide1 .rotates:nth-child(3)')[0],
 				animations: [
 					{name: 'slide1-out-phone-right-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
 					{name: 'slide1-out-phone-right-p2', duration: '500ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
 				]
 			},
 			{
-				element: $('.carousel .slide:nth-child(1) .text')[0],
+				element: $('#slide1 .text')[0],
 				animations: [
 					{
 						name: 'slide1-out-text', duration: '300ms', delay: '700ms', fillMode: 'forwards',
 						onEnd: function(){
 							/* SLIDE 2 */							
-							$('.carousel .slide:nth-child(1)').css('display', 'none');
-							$('.carousel .slide:nth-child(2)').css('display', 'block');
+							$('#slide1').css('display', 'none');
+							$('#slide2').css('display', 'block');
 							
 							var slide2Animations = [
 								new Animation({
-									element: $('.carousel .slide:nth-child(2) .text')[0],
+									element: $('#slide2 .text')[0],
 									animations: [
 										{name: 'slide2-in-text', duration: '700ms', fillMode: 'backwards', onEnd: function(e){
 											$(e.originalEvent.srcElement).css('opacity', 1.0);
 										}},
-										{name: 'slide2-out-text', duration: '300ms', delay: '6000ms', fillMode: 'forwards'},
+										{name: 'slide2-out-text', duration: '300ms', delay: '6000ms', fillMode: 'forwards'},									
 										//{name: 'flip-vertical-front-face', duration: '300ms', delay: '7400ms', fillMode: 'forwards'}
 									]
-								})
+								})/*,
+								new Animation({
+									element:'#home-header .wheel',
+									animations: [
+										{name: 'rotate-CCW-0--180', duration: 2000, delay: 6300, fillMode: 'forwards'}
+									]
+								})*/
 							];
 							
 			 
@@ -88,7 +94,7 @@ $(document).ready(function(){
 																		
 							for(var i=0; i<8; i++){
 								slide2Animations.push(new Animation({
-									element: $('.carousel .slide:nth-child(2) .rotator:nth-child('+(i+1)+')'),
+									element: $('#slide2 .rotator:nth-child('+(i+1)+')'),
 									animations: [
 										{
 											name: 'slide2-out-explode-ref-' + i+1,
@@ -122,7 +128,7 @@ $(document).ready(function(){
 			}		
 		]
 	});
-	//Timeline.play();
+	Timeline.play();
 	/*$('<div></div>').slideShow({
 		slides: [
 			{
@@ -133,7 +139,7 @@ $(document).ready(function(){
 					var translationsY = [150, 200, 200, 150];
 					function splashRotator(index){
 						var i = index;
-						var obj = $('.carousel .slide:nth-child(2) .rotator:nth-child('+(i+1)+')');
+						var obj = $('#slide2 .rotator:nth-child('+(i+1)+')');
 						obj.cssAnimated({
 							duration: '300ms',
 							delay: ''
@@ -147,7 +153,7 @@ $(document).ready(function(){
 					for(var i=0; i<8; i++){
 						splashRotator(i);
 					}
-					$('.carousel .slide:nth-child(2) .text').cssAnimated({
+					$('#slide2 .text').cssAnimated({
 						duration: '300ms',
 						delay: ''
 					}).css({'-webkit-transform': 'translate(0, 240px)'});
