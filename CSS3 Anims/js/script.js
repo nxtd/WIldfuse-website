@@ -5,7 +5,7 @@
 $(document).ready(function(){	
 
 	var Timeline = new AnimationTimeline({
-		delay: 0,
+		delay: 5000,
 		animations:[
 			/* SLIDE 1 */
 			{// Phone on the left
@@ -34,20 +34,38 @@ $(document).ready(function(){
 				animations: [
 					{
 						name: 'slide1-out-text', duration: '300ms', delay: '700ms', fillMode: 'forwards',
-						onEnd: function(){							
-							$('.carousel .slide:nth-child(1)').hide();
-							$('.carousel .slide:nth-child(2)').show();
+						onEnd: function(){
+							/* SLIDE 2 */							
+							$('.carousel .slide:nth-child(1)').css('display', 'none');
+							$('.carousel .slide:nth-child(2)').css('display', 'block');
+							
+							var slide2Animations = [
+								new Animation({
+									element: $('.carousel .slide:nth-child(2) .text')[0],
+									animations: [
+										{name: 'slide2-in-text', duration: '700ms', fillMode: 'backwards', onEnd: function(e){
+											$(e.originalEvent.srcElement).css('opacity', 1.0);
+										}},
+										{name: 'slide2-out-text', duration: '300ms', delay: '6000ms', fillMode: 'forwards'},
+										//{name: 'flip-vertical-front-face', duration: '300ms', delay: '7400ms', fillMode: 'forwards'}
+									]
+								})
+							];
+							
+			 
+							
+											 
 							
 							var rotators = $('.rotator');							
 							var maxDelayForRotatorsToFlip = 0;	
-							var rotatorAnimations = [];
+							
 							for(var i=0; i<rotators.length; i++){
 								
 								var delaysForRotatorsToFlip = Math.pow(Math.floor(Math.random()*25),2);
 								maxDelayForRotatorsToFlip = delaysForRotatorsToFlip > maxDelayForRotatorsToFlip ? delaysForRotatorsToFlip : maxDelayForRotatorsToFlip;
 								
 								var rfi = 800;								
-								rotatorAnimations.push(
+								slide2Animations.push(
 									new Animation({
 										element: $(rotators[i]).find('.front').html('W'),
 										animations:[
@@ -57,7 +75,7 @@ $(document).ready(function(){
 									})
 								);
 								
-								rotatorAnimations.push(
+								slide2Animations.push(
 									new Animation({
 										element: $(rotators[i]).find('.back'),
 										animations:[
@@ -69,7 +87,7 @@ $(document).ready(function(){
 							};
 																		
 							for(var i=0; i<8; i++){
-								rotatorAnimations.push(new Animation({
+								slide2Animations.push(new Animation({
 									element: $('.carousel .slide:nth-child(2) .rotator:nth-child('+(i+1)+')'),
 									animations: [
 										{
@@ -96,24 +114,15 @@ $(document).ready(function(){
 							
 							
 							
-							var Timeline2 = new AnimationTimeline({delay: 0}, rotatorAnimations);
+							var Timeline2 = new AnimationTimeline({delay: 0}, slide2Animations);
 							Timeline2.play();
 						}
 					}					
 				]			
-			},
-			/* SLIDE 2 */
-			{
-				element: $('.carousel .slide:nth-child(2) .text')[0],
-				animations: [
-					{name: 'slide2-in-text', duration: '700ms', delay: '1000ms', fillMode: 'backwards'},
-					{name: 'slide2-out-text', duration: '300ms', delay: '7100ms', fillMode: 'forwards'},
-					/*{name: 'flip-vertical-front-face', duration: '300ms', delay: '7400ms', fillMode: 'forwards'}*/
-				]
 			}		
 		]
 	});
-	Timeline.play();
+	//Timeline.play();
 	/*$('<div></div>').slideShow({
 		slides: [
 			{
