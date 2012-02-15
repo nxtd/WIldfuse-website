@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test CSS Animation Framework</title>
+
+<!-- reference your own javascript files here -->
+
+  <script src="../js/libs/modernizr-2.0.6.min.js"></script>
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+  <script src="../js/plugins.js"></script> 
+  <script src="../js/script.js"></script> 
+  <script src="../js/cssanimation.min.js"></script>
+  <script src="../js/cssanimation.jquery.min.js"></script> 
+
+	<script>
+		$(document).ready(function(){
+			//$("#blink").css({'-webkit-animation': 'fade-in 700ms alternate infinite'});
+			$("#blink").cssanimation('fade-in', 1000);
+			$("#blink").bind('cssAnimationKeyframe', function(event){
+			   			
+			    switch(event.originalEvent.keyText) {
+			        case '0%': {alert('0'); break;}
+			        case '25%': {alert('25'); break;}
+			        case '50%': {alert('50'); break;}
+			        case '75%': {alert('75'); break;}
+			        case '100%': {alert('100');}
+			    };
+			});			    
+		});
+	</script>
+	<style>
+		@-webkit-keyframes fade-in{
+			0%{
+				opacity: 0.0
+			}
+			50%{opacity: 0.3}
+			100%{
+				opacity: 1.0
+			}
+			
+		}
+		
+		#blink{
+			width: 300px;
+			height: 200px;
+			background:red;	
+		}
+	</style>
+</head>
+	<body>
+		<div id="blink"></div>
+	</body>
+</html>

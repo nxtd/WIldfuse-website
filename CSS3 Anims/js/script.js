@@ -2,86 +2,123 @@
 
 */
 
-$(document).ready(function(){
+$(document).ready(function(){	
 
-	$('<div></div>').slideShow({
-		slides: [
-			{
-				_in: {startAtTime:0, run:function(){}}, 
-				_main: {startAtTime:0, run:function(){}}, 
-				_out: {startAtTime:/*5*/000, run:function(){
-					
-					var phones = {
-						left: $('.carousel .slide:nth-child(1) .rotates:nth-child(1)'),
-						middle: $('.carousel .slide:nth-child(1) .slides:nth-child(2)'),
-						right: $('.carousel .slide:nth-child(1) .rotates:nth-child(3)')
-					};
-
-					phones.left.css({
-						'-webkit-animation': 'slide1-out-phone-left-p1 500ms ease-in, slide1-out-phone-left-p2 500ms linear 500ms forwards'
-					});
-					phones.middle.css({
-						'-webkit-animation': 'slide1-out-phone-middle-p1 500ms ease-in, slide1-out-phone-middle-p2 190ms linear 500ms forwards'
-					});
-					phones.right.css({
-						'-webkit-animation': 'slide1-out-phone-right-p1 500ms ease-in, slide1-out-phone-right-p2 500ms linear 500ms forwards'
-					});
-					
-					$('.carousel .slide:nth-child(1) .text').css({
-						'-webkit-animation': 'slide1-out-text 300ms 1000ms forwards'
-					});					
-				}}
+	var Timeline = new AnimationTimeline({
+		delay: 0,
+		animations:[
+			/* SLIDE 1 */
+			{// Phone on the left
+				element: $('.carousel .slide:nth-child(1) .rotates:nth-child(1)')[0],
+				animations: [
+					{name: 'slide1-out-phone-left-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
+					{name: 'slide1-out-phone-left-p2', duration: '500ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
+				]
+			},
+			{// Phone in the middle
+				element: $('.carousel .slide:nth-child(1) .slides:nth-child(2)')[0],
+				animations:[
+					{name: 'slide1-out-phone-middle-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
+					{name: 'slide1-out-phone-middle-p2', duration: '190ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
+				]
+			},
+			{// Phone on the right
+				element: $('.carousel .slide:nth-child(1) .rotates:nth-child(3)')[0],
+				animations: [
+					{name: 'slide1-out-phone-right-p1', duration: '500ms', timingFunction: 'ease-in', fillMode: 'backwards'}, 
+					{name: 'slide1-out-phone-right-p2', duration: '500ms', delay: '500ms', timingFunction: 'linear', fillMode: 'forwards'}
+				]
 			},
 			{
-				_in: {startAtTime:3000, run:function(){
-				
-					$('.carousel .slide:nth-child(1)').hide();
-					$('.carousel .slide:nth-child(2)').show();
-					
-					$('.carousel .slide:nth-child(2) .text').css({
-						'-webkit-animation': 'slide2-in-text 700ms forwards'
-					});
-					
-					/*var rotators = $('.rotator');
-					var rotatorFronts = rotators.find('.front').text('W');
-					var rotatorBacks = rotators.find('.back');					
-					
-					setTimeout(function(){
-						rotatorFronts.css({
-							'-webkit-animation': 'fade-in 1000ms both'
-						});
-						rotatorBacks.css({
-							'-webkit-animation': 'fade-in 1000ms both'
-						});
-						
-						setTimeout(function(){
-							var maxDelayForRotatorsToFlip = 0;
-							var delaysForRotatorsToFlip = [];
+				element: $('.carousel .slide:nth-child(1) .text')[0],
+				animations: [
+					{
+						name: 'slide1-out-text', duration: '300ms', delay: '700ms', fillMode: 'forwards',
+						onEnd: function(){							
+							$('.carousel .slide:nth-child(1)').hide();
+							$('.carousel .slide:nth-child(2)').show();
 							
+							var rotators = $('.rotator');							
+							var maxDelayForRotatorsToFlip = 0;	
+							var rotatorAnimations = [];
 							for(var i=0; i<rotators.length; i++){
-								delaysForRotatorsToFlip[i] = Math.pow(Math.floor(Math.random()*20),2) + 700;
-								//(maxDelayForRotatorsToFlip < delaysForRotatorsToFlip[i]) ? {maxDelayForRotatorsToFlip = delaysForRotatorsToFlip[i]}:{};
 								
-								flipRotator(i);
-							}								
+								var delaysForRotatorsToFlip = Math.pow(Math.floor(Math.random()*25),2);
+								maxDelayForRotatorsToFlip = delaysForRotatorsToFlip > maxDelayForRotatorsToFlip ? delaysForRotatorsToFlip : maxDelayForRotatorsToFlip;
+								
+								var rfi = 800;								
+								rotatorAnimations.push(
+									new Animation({
+										element: $(rotators[i]).find('.front').html('W'),
+										animations:[
+											{name: 'fade-in', duration: rfi*3, fillMode: 'forwards'},
+											{name: 'flip-horizontal-front', duration: '2000ms', delay: rfi +  delaysForRotatorsToFlip, fillMode: 'forwards'}
+										]
+									})
+								);
+								
+								rotatorAnimations.push(
+									new Animation({
+										element: $(rotators[i]).find('.back'),
+										animations:[
+											{name: 'fade-in', duration: rfi*3, fillMode: 'forwards'},
+											{name: 'flip-horizontal-back', duration: '2000ms', delay: rfi + delaysForRotatorsToFlip, fillMode: 'forwards'}
+										]
+									})
+								);
+							};
+																		
+							for(var i=0; i<8; i++){
+								rotatorAnimations.push(new Animation({
+									element: $('.carousel .slide:nth-child(2) .rotator:nth-child('+(i+1)+')'),
+									animations: [
+										{
+											name: 'slide2-out-explode-ref-' + i+1,
+											duration: '300ms',
+											delay: 6000,
+											fillMode: 'forwards',									
+										},
+										{
+											name:  ((((i+1)%4) == 0)||(i+4)%4==0) ? 'growByHalf' : 'growByOne',
+											duration: '300ms',
+											delay: 6000,
+											fillMode: 'forwards',									
+										},
+										{
+											name: 'fade-out',
+											duration: '300ms',
+											delay: 6000,
+											fillMode: 'forwards',									
+										}
+									]
+								}));
+							}							
 							
-							function flipRotator(index){
-								var i = index;
-								setTimeout(function(){
-									rotators.eq(i).find('.front').css({
-										'-webkit-animation': 'flip-horizontal-front 2000ms both'
-									});
-									rotators.eq(i).find('.back').css({
-										'-webkit-animation': 'flip-horizontal-back 2000ms both'
-									});	
-								}, delaysForRotatorsToFlip[i]);
-							}						
-						}, 1000);	
-					}, 700);	*/				
-																							
-				}}, 
-				_main: {startAtTime:0, run:function(){}}, 
-				_out: {startAtTime:7000, run:function(){
+							
+							
+							var Timeline2 = new AnimationTimeline({delay: 0}, rotatorAnimations);
+							Timeline2.play();
+						}
+					}					
+				]			
+			},
+			/* SLIDE 2 */
+			{
+				element: $('.carousel .slide:nth-child(2) .text')[0],
+				animations: [
+					{name: 'slide2-in-text', duration: '700ms', delay: '1000ms', fillMode: 'backwards'},
+					{name: 'slide2-out-text', duration: '300ms', delay: '7100ms', fillMode: 'forwards'},
+					/*{name: 'flip-vertical-front-face', duration: '300ms', delay: '7400ms', fillMode: 'forwards'}*/
+				]
+			}		
+		]
+	});
+	Timeline.play();
+	/*$('<div></div>').slideShow({
+		slides: [
+			{
+				
+				_out: {startAtTime:17000, run:function(){
 				
 					var translationsX = [-100, -50, 50, 100];
 					var translationsY = [150, 200, 200, 150];
@@ -108,7 +145,8 @@ $(document).ready(function(){
 				}}
 			}
 		]
-	});
+	});*/
+	
 });
 
 

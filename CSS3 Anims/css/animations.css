@@ -65,14 +65,14 @@ text-align: left;
 + SLIDE 2
 -
 */
-.slide:nth-child(2){display: none}
+.slide:nth-child(2){}
 
-.slide:nth-child(2) .text{
+.carousel .slide:nth-child(2) .text{
 /*background: #ededed;*/
 text-align: center;
+margin-top: -50px;
 margin-left: auto; 
-margin-bottom: 50px; 
-opacity: 0.0;
+margin-bottom: 80px; 
 }
 
 .slide:nth-child(2) .illustration{
@@ -80,27 +80,6 @@ position: relative;
 top: -40px;
 margin-left: -26px;
 }
-
-.slide:nth-child(2) .illustration img{
-/*position: absolute;*/
-}
-/*.slide:nth-child(2) .illustration .panel:nth-child(1){left: 0; top: 0;}
-.slide:nth-child(2) .illustration .panel:nth-child(2){left: 231px; top: 0;}
-.slide:nth-child(2) .illustration .panel:nth-child(3){left: 462px; top: 0;}
-.slide:nth-child(2) .illustration .panel:nth-child(4){left: 693px; top: 0;}
-.slide:nth-child(2) .illustration .panel:nth-child(5){left: 0; top: 120px;}
-.slide:nth-child(2) .illustration .panel:nth-child(6){left: 231px; top: 120px;}
-.slide:nth-child(2) .illustration .panel:nth-child(7){left: 462px; top: 120px;}
-.slide:nth-child(2) .illustration .panel:nth-child(8){left: 693px; top: 120px;}
-
-.slide:nth-child(2) .illustration img:nth-child(1){left: -2000px; top: 0;}
-.slide:nth-child(2) .illustration img:nth-child(2){left: -1769px; top: 0;}
-.slide:nth-child(2) .illustration img:nth-child(3){left: -1538px; top: 0;}
-.slide:nth-child(2) .illustration img:nth-child(4){left: -1307px; top: 0;}
-.slide:nth-child(2) .illustration img:nth-child(5){left: 3000px; top: 120px;}
-.slide:nth-child(2) .illustration img:nth-child(6){left: 3231px; top: 120px;}
-.slide:nth-child(2) .illustration img:nth-child(7){left: 3462px; top: 120px;}
-.slide:nth-child(2) .illustration img:nth-child(8){left: 3693px; top: 120px;}*/
 
 
 .panel {
@@ -221,15 +200,37 @@ margin-left: -26px;
 @-webkit-keyframes fade-in{
 	from{
 		-webkit-opacity: 0.0; 	
-		opacity: 0.0; 
+		opacity: 0.0; 		
 	}
 	to{
 		-webkit-opacity: 1.0; 		
 		opacity: 1.0; 	
 	}
 }
-
-
+@-webkit-keyframes fade-out{
+	from{
+		-webkit-opacity: 1.0; 	
+		opacity: 1.0; 		
+	}
+	to{
+		-webkit-opacity: 0.0; 		
+		opacity: 0.0; 	
+	}
+}
+@-webkit-keyframes growByOne{
+	from{		
+	}
+	to{
+		-webkit-transform: scale(2.0); 	
+	}
+}
+@-webkit-keyframes growByHalf{
+	from{		
+	}
+	to{
+		-webkit-transform: scale(1.5); 	
+	}
+}
 
 /******************************************
 *
@@ -239,8 +240,9 @@ margin-left: -26px;
 
 /* -- Texts -- */
 @-webkit-keyframes slide1-out-text{
-	from{}
-	to{-webkit-transform: translate(2000px, 0); opacity: 0.0}
+	0%{}
+	90%{opacity: 0.0}
+	100%{-webkit-transform: translate(1000px, 0); opacity: 0.0}
 }
 
 /* -- Phone on the left -- */
@@ -281,8 +283,12 @@ margin-left: -26px;
 
 /* -- Texts -- */
 @-webkit-keyframes slide2-in-text{
-	from{-webkit-transform: translate(0, -140px); opacity: 0.0; -webkit-opacity: 0.0; }
-	to{-webkit-transform: translate(0, -40px); opacity: 1.0; -webkit-opacity: 1.0;}
+	from{-webkit-transform: translate(0, -140px); opacity: 0.0; }
+	to{-webkit-transform: translate(0, 0); opacity: 1.0; }
+}
+@-webkit-keyframes slide2-out-text{
+	0%{-webkit-transform: translate(0, 0); opacity: 1.0;}
+	100%{-webkit-transform: translate(0, 120px); opacity: 1.0; -webkit-opacity: 1.0;}	
 }
 
 /* -- Flip -- */
@@ -306,5 +312,53 @@ margin-left: -26px;
 		z-index: 1000;
 		-webkit-transform: rotateY(0deg);
 		opacity: 1.0;
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-1{
+	0%{}
+	100%{
+		-webkit-transform: translate(-100px, -50px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-2{
+	0%{}
+	100%{
+		-webkit-transform: translate(-50px, -100px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-3{
+	0%{}
+	100%{
+		-webkit-transform: translate(50px, -100px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-4{
+	0%{}
+	100%{
+		-webkit-transform: translate(100px, -50px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-5{
+	0%{}
+	100%{
+		-webkit-transform: translate(-100px, 50px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-6{
+	0%{}
+	100%{
+		-webkit-transform: translate(-50px, 100px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-7{
+	0%{}
+	100%{
+		-webkit-transform: translate(50px, 100px);
+	}
+}
+@-webkit-keyframes slide2-out-explode-ref-8{
+	0%{}
+	100%{
+		-webkit-transform: translate(100px, 50px);
 	}
 }

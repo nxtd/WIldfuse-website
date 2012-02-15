@@ -12,9 +12,9 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>CSS 3 Apple Style Slideshow</title>
+  <title>WILDFUSE</title>
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="Nicolas Dancie">
 
   <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,6 +24,7 @@
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
   <!-- end CSS-->
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -34,70 +35,6 @@
   <script src="js/libs/modernizr-2.0.6.min.js"></script>  
   
   <style>
-  	/*********************
-  	-
-  	+ Animations
-  	-
-  	-  
-  	*/
-  	
-  	/* appears from top, slide down and rotate */
-  	@-webkit-keyframes anim1{
-  		0%{   			
-  			-webkit-transform: translate(0, 0);/* rotate(0deg) ;*/
-  		}
-  		100%{
-			-webkit-transform: translate(500, 200); /* rotate(10deg) ;*/
-  		}
-  	}
-  	/* appears from top, slide up and rotate */
-  	@-webkit-keyframes anim2{
-  		0%{ 
-  			top:1000px;
-  			left: 200px;
-  			-webkit-transform: rotate(0deg);  			
-  		}
-  		100%{
-  			top: 100px; 
-  			left: 300px;
-			-webkit-transform: rotate(10deg);
-  		}
-  	}  	
-  
-  	/* Carousel */
-  	.carousel{}
-  	.carousel .slide{}  
-  	.carousel .slide  img {}
-	.carousel .slide  img:hover{}
-	
-	/* first slide */
-  	.carousel .slide:nth-child(1) .object:nth-child(1){
-  		/*position: absolute;
-  		top: -500px;
-		right: 200px;*/
-  	}
-  	.carousel .slide:nth-child(1) .object:nth-child(1).animated-in{
-  		-webkit-animation-name: anim1;
-		-webkit-animation-duration: 1s;
-		-webkit-animation-iteration-count: 1;
-		/*top: 100px; 
-		right: 400px;
-		-webkit-transform: rotate(10deg);*/
-  	}
-  	
-  	.carousel .slide:nth-child(1) .object:nth-child(2){
-  		position: absolute;
-  		top: 1000px;
-  		left: 200px;
-  	}
-  	.carousel .slide:nth-child(1) .object:nth-child(2).animated-in{
-  		-webkit-animation-name: anim2;
-		-webkit-animation-duration: 1s;
-		-webkit-animation-iteration-count: 1;
-		/*top: 100px; 
-  		left: 300px;
-		-webkit-transform: rotate(10deg);*/
-  	}
   	
   </style>
 </head>
@@ -106,21 +43,85 @@
 
   <div id="container">
     <header>
-
     </header>
-    <div id="main" role="main">
-		<div class="carousel">
+    <div id="main" role="main">		
+    	<div class="carousel">
 			<div class="slide">
-				<img src="img/slide0-obj0.png" class="object" id="img1" alt="" />
-				<img src="img/slide0-obj1.png" class="object" id="img2" alt="" />
+				<div class="text">
+					<h3>Cut Edge Nearshore Development</h3>
+					<p class="lead-text">Sed vestibulum ullamcorper viverra. Ut velit arcu, pellentesque id rutrum eu, interdum fringilla orci</p>
+				</div>
+				<div class="illustration">
+					<div class="rotates clock">
+						<img src="img/slide0-obj0.png" class="object" id="slide0-object0" alt="" />
+					</div>
+					<div class="slides down">
+						<img src="img/slide0-obj1.png" class="object" id="slide0-object1" alt="" />
+					</div>
+					<div class="rotates counter-clock">
+						<img src="img/slide0-obj2.png" class="object" id="slide0-object2" alt="" />				
+					</div>
+				</div>
 			</div>
-			<div class="slide" style="display: none">
-				<img src="img/slide1-obj0.png" class="object" alt="" />
+			<div class="slide">
+				<div class="text">
+					<h3>Ridiculously brilliant References</h3>
+					<p class="lead-text">Sed vestibulum ullamcorper viverra. Ut velit arcu, pellentesque id rutrum eu, interdum fringilla orci</p>
+				</div>			
+				<div class="illustration">
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj0.png" class="object" alt="" />	
+						</div>		
+					</div>
+					<div class="rotator panel">
+						<div class="front"></div>						
+						<div class="back">
+							<img src="img/slide1-obj1.png" class="object" alt="" />
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj2.png" class="object" alt="" />
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj3.png" class="object" alt="" />							
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj4.png" class="object" alt="" />							
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj5.png" class="object" alt="" />							
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj6.png" class="object" alt="" />							
+						</div>
+					</div>			
+					<div class="rotator panel">
+						<div class="front"></div>
+						<div class="back">
+							<img src="img/slide1-obj7.png" class="object" alt="" />							
+						</div>
+					</div>				
+				</div>				
 			</div>			
 		</div>
     </div>
     <footer>
-
     </footer>
   </div> <!--! end of #container -->
 
@@ -135,11 +136,7 @@
   <!-- scripts concatenated and minified via ant build script-->
   <script defer src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
-  <script>
-  	$(document).ready(function(){
-  		$('.slide:nth-child(1) .object').addClass('animated-in');
-  	});
-  </script>
+  <script defer src="../../css-animation-timeline/animation-framework.js"></script>
   <!-- end scripts-->
 
 	
